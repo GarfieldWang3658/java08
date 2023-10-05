@@ -1,53 +1,56 @@
-package com.hspedu.homework;
+package com.hspedu;
 
 public class HomeWork08 {
     public static void main(String[] args) {
-//        CheckingAccount checkingAccount = new CheckingAccount(1000);
-//        checkingAccount.deposit(10);
-//        checkingAccount.withdraw(9);
-//        System.out.println(checkingAccount.getBalance());
-        SavingsAccount savingsAccount = new SavingsAccount(1000);
-        savingsAccount.deposit(100);
-        savingsAccount.deposit(100);
-        savingsAccount.deposit(100);
-        System.out.println(savingsAccount.getBalance());
-        savingsAccount.deposit(100);
-        System.out.println(savingsAccount.getBalance());
-        //定时器调用统计余额，
-        savingsAccount.earnMonthlyInterest();
-        System.out.println(savingsAccount.getBalance());
-        savingsAccount.withdraw(100);
-        savingsAccount.withdraw(100);
-        savingsAccount.deposit(100);
-        savingsAccount.deposit(100);
-        System.out.println(savingsAccount.getBalance());
+        Color red = Color.RED;
+        red.show();
 
+        switch (red){
+            case RED:
+                System.out.println("匹配到红色");
+                break;
+            case BLUE:
+                System.out.println("匹配到蓝色");
+                break;
+            case BLACK:
+                System.out.println("匹配到黑色");
+                break;
+            case GREEN:
+                System.out.println("匹配到绿色");
+                break;
+            case YELLOW:
+                System.out.println("匹配到黄色");
+                break;
+            default:
+                System.out.println("没有匹配到");
+
+        }
+
+        }
+    }
+
+
+interface Show{
+    public void show();
+}
+enum Color implements Show{
+    RED(255,0,0),
+    BLUE(0,0,255),
+    BLACK(0,0,0),
+    YELLOW(255,255,0),
+    GREEN(0,255,0);
+    private int redvalue;
+    private int greenvalue;
+    private int bluevalue;
+
+    Color(int redvalue, int greenvalue, int bluevalue) {
+        this.redvalue = redvalue;
+        this.greenvalue = greenvalue;
+        this.bluevalue = bluevalue;
+    }
+
+    @Override
+    public void show() {
+        System.out.println("属性="+redvalue+","+greenvalue+","+bluevalue);
     }
 }
-class BankAccount {
-    private double balance;
-
-    public BankAccount(double balance) {
-        this.balance = balance;
-    }
-
-    //存款
-    public void deposit(double amount) {
-        balance += amount;
-    }
-
-    //取款
-    public void withdraw(double amount) {
-        balance -= amount;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-}
-
-

@@ -1,33 +1,37 @@
-package com.hspedu.homework;
+package com.hspedu;
 
 public class HomeWork07 {
-}
-class test {
-    String name ="Rose";
-    test(){
-        System.out.println("test");
-    }
-    test(String name){
-        this.name=name;
-    }
-
-}
-class demo extends test{
-    String name = "jack";
-    demo(){
-        super();
-        System.out.println("demo");
-    }
-    demo(String s){
-        super(s);
-    }
-    public void test(){
-        System.out.println(super.name);
-        System.out.println(this.name);
-    }
-
     public static void main(String[] args) {
-        new demo().test();
-        new demo("john").test();
+
+        CAR car01 = new CAR(33.0);
+        CAR car02 = new CAR(50.0);
+        CAR car03 = new CAR(-12);
+        car01.getAir().flow();
+        car02.getAir().flow();
+        car03.getAir().flow();
     }
 }
+class CAR {
+    private double temprature;
+
+    public CAR(double temprature) {
+        this.temprature = temprature;
+    }
+
+    class Air {//成员内部类。
+        public void flow() {
+            if (temprature>40.0){
+                System.out.println("空调吹冷风");
+            }
+            if (temprature<0){
+                System.out.println("空调吹暖风");
+            }
+                System.out.println("空调关闭");
+        }
+
+        }
+    public Air getAir(){
+        return new Air();
+    }
+}
+

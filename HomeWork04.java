@@ -1,93 +1,37 @@
-package com.hspedu.homework;
+package com.hspedu;
 
 public class HomeWork04 {
     public static void main(String[] args) {
-        staff tom = new staff("tom", 300, 22, 1.0);
-        manage wang = new manage("wang", 300, 22, 1.2);
-        wang.setBonus(3000);
-        tom.printSalary();
-        wang.printSalary();
+        CellPhone cellPhone = new CellPhone();
+        //1、匿名内部类是：
+        /*
+     new computer() {
+            @Override
+            public double work(double n1, double n2) {
+                return n1+n2;
+            }
+        },同时也是一个对象
+        //编译类型是接口类型 computer。运行类型就是匿名内部类
+         */
+        cellPhone.testWork(new computer() {
+            @Override
+            public double work(double n1, double n2) {
+                return n1+n2;
+            }
+        },10,8);
+    }
+}
+interface computer{
+    public double work(double n1,double n2);
+}
+class CellPhone {
+    //当调用testwork方法时，直接传入，一个实现了computer接口的匿名内部类即可
+    //该匿名内部类可以灵活实现work方法，完成不同的计算任务
 
+    public void testWork(computer computer, double n1, double n2) {
+        double result = computer.work(n1, n2);//动态绑定
+        System.out.println("计算后的结果为=" + result);
 
     }
 }
 
-class empolyee1{
-    private String name;
-    private double DaySalary;
-    private int Day;
-
-    private double leve;
-
-    public empolyee1(String name, double daySalary, int day, double leve) {
-        this.name = name;
-        DaySalary = daySalary;
-        Day = day;
-        this.leve = leve;
-    }
-
-    public String getName1() {
-        return name;
-    }
-
-    public void setName1(String name) {
-        this.name = name;
-    }
-
-    public double getDaySalary1() {
-        return DaySalary;
-    }
-
-    public void setDaySalary1(double daySalary) {
-        DaySalary = daySalary;
-    }
-
-    public int getDay() {
-        return Day;
-    }
-
-    public void setDay(int day) {
-        Day = day;
-    }
-
-    public double getLeve() {
-        return leve;
-    }
-
-    public void setLeve(double leve) {
-        this.leve = leve;
-    }
-
-    public void printSalary(){
-        System.out.println(getName1()+"的工资为"+getDaySalary1()*getDay()*getLeve());
-    }
-}
-class staff extends empolyee1{
-    public staff(String name, double daySalary, int day, double leve) {
-        super(name, daySalary, day, leve);
-    }
-    public void printSalary(){
-        super.printSalary();
-    }
-
-}
-class manage extends empolyee1{
-    private int bonus;
-    public manage(String name, double daySalary, int day, double leve) {
-        super(name, daySalary, day, leve);
-    }
-
-    public int getBonus() {
-        return bonus;
-    }
-
-    public void setBonus(int bonus) {
-        this.bonus = bonus;
-    }
-
-
-    public void printSalary(){
-        System.out.println(getName1()+"的工资为"+(getDaySalary1()*getDay()*getLeve()+getBonus()));
-    }
-
-}
